@@ -49,7 +49,7 @@ def get_nhl_games():
     );
 
     /*IF YOU WANTED TO AUTOMATE, TURN THESE INTO A SP*/
-    DELETE FROM STAGING.GAMES;
+    TRUNCATE STAGING.GAMES;
     insert into staging.games 
     select get_nhl_games(),current_timestamp;
 
@@ -201,7 +201,7 @@ def get_nhl_teams():
 
 
     --just reload teams yearly before season starts
-    delete from edw.teams;
+    TRUNCATE edw.teams;
     insert into edw.teams 
     SELECT 
     f.value:id::int as team_id,
